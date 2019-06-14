@@ -38,12 +38,18 @@ a {
 .top{
 	width: 100%;
 	height: 50px;
-	background-color:blue;
+	line-height: 30px;
+	padding-left: 20px;
+	background-color:yellow;
+	margin-bottom: 20px;
+	border-radius: 20px;
 }
 .top h4{
-	font-size: 20px;
+	font-size: 30px;
 	color:red;
 	margin-top: 10px;
+	font-style: italic ;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
 }
 .top span{
 	margin-left: 10px;
@@ -90,6 +96,7 @@ a {
 	background: #fff;
 }
 #myself_g li a{
+	display: block;
 	text-decoration: none;
 	color: #000;
 }
@@ -99,6 +106,7 @@ a {
 	height: 50px;
 	position: relative;
 	background-color:#000;
+	margin-bottom: 20px;
 }
 #search{
 	width:500px;
@@ -131,14 +139,16 @@ a {
 .hot_search{
 	width: 100%;
 	height: 100%;
-	padding: 20px;
+	padding: 30px;
+	background-color:#ccc;
 	text-align: center;
 }
 #search_list li{
 	width: 100px;
 	height: 200px;
 	display: inline-block;
-	margin-right: 100px;
+	margin-right:60px;
+	margin-left: 60px;
 	text-align: center;
 }
 #search_list li .img{
@@ -147,7 +157,7 @@ a {
 	background-color:red;
 }
 #search_list li p{
-	color:#ccc;
+	color:#fff;
 }
 /*搜索出来的内容*/
 .search_content_g{

@@ -7,7 +7,26 @@
 	*{
 		margin: 0;
 		padding: 0;
-		text-decoration:none;
+		list-style: none;
+		text-decoration: none;
+		box-sizing: border-box;
+	}	
+	.clearfix::after{
+		content:'';
+		display:block;
+		width:0;
+		height:0;
+		visibility:hidden;
+		clear:both;
+	}
+	.clearfix{
+		zoom:1;
+	} 
+	.fl{
+		float:left;
+	}
+	.fr{
+		float:right;
 	}
 	.logon,.login{
 		width: 80%;
@@ -43,10 +62,24 @@
 		height: 100%;
 		border-radius: 50%;
 	}
+	#logon_btn,#login_btn{
+		width: 150px;
+		height: 40px;
+		border-radius: 30px;
+		display: inline-block;
+		padding: 10px;
+		background-color:blue;
+		color:#fff;
+	}
+	#back_g{
+		font-size: 30px;
+		color:blue;
+	}
 </style>
 </head>
 <body>
 	<div class="logon">
+		<a href="index.html" id="back_g">←</a>
 		<div class="logo">注册</div>
 		<div id="user_img"></div>
 		<div><input type="file" id="files" style="border:none"></div>
@@ -56,15 +89,18 @@
 		<div><input type="text" id="user_up"></div>
 		<div>密码：</div>
 		<div><input type="text" id="pass_up"></div>
-		<div style="text-align: right"><a href="#" id="go_login">直接登陆</a></div>
+		<div class="clearfix"><a href="#" id="what_login" class="fl">问题?</a><a href="#" id="go_login" class="fr">直接登陆</a></div>
+		<div style="text-align: center;"><a href="#" id="logon_btn">提交</a></div>
 	</div>
 	<div class="login">
+		<a href="index.html" id="back_g">←</a>
 		<div class="logo">登陆</div>
 		<div>账号：</div>
 		<div><input type="text" id="user_in"></div>
 		<div>密码：</div>
 		<div><input type="text" id="pass_in"></div>
 		<div style="text-align: right"><a href="#" id="go_logon">注册</a></div>
+		<div style="text-align: center;"><a href="#" id="login_btn">确认</a></div>
 	</div>
 	<script src="javascripts/jquery.js"></script>
 	<script>
