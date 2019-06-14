@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+			list-style:none;
+		}
+		.clearfix:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.clearfix{
+			zoom: 1;
+		}
+		#container{
+			margin:80px 30%;
+			font-size:24px;
+			padding:40px;
+			width:600px;
+		}
+		#y_chapter{
+			width:400px;
+			height:50px;
+			margin-bottom:70px;
+		}
+		#y_area{
+			width:400px;
+			min-height:200px;
+			margin-bottom:24px;
+			font-size:24px;
+			/*font-family:"微软雅黑";*/
+			
+		}
+		#y_btn{
+			font-size:26px;
+			padding:6px;
+		}
+		#y_back{
+			font-size:26px;
+			padding:6px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		小说章节：<input type="text" id="y_chapter"/></br>
+		章节详情：<input type="textarea" id="y_area"></br>
+		<button id="y_btn">发表作品</button>
+		<button id="y_back">返回主页</button>
+	</div>	
+</body>
+<script src="jquery.js"></script>
+<script>
+	
+</script>
+</html>
