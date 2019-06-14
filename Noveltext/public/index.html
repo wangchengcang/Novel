@@ -2,9 +2,134 @@
 <html lang="zh-CN">
 <head>
 	<meta charset="UTF-8">
-	<title>小说</title>
+	<title>只有你想不到，没有我找不到</title>
+	<link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
-	
+	<div class="box">
+		<div class="top clearfix">
+			<h4 class="fl">王成仓</h4>
+			<div id="user_img" class="fr clearfix">
+				<a href="login.html" class="fl">
+					<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2716092914,1740098833&fm=26&gp=0.jpg" alt="" id="login_img">
+				</a>
+				<span id="user_name">未登录</span>
+				<ul id="myself_g">
+					<li><a href="#">个人中心</a></li>
+					<li><a href="#">书架</a></li>
+					<li><a href="#">发表</a></li>
+					<li><a href="#">退出登录</a></li>
+					<li><a href="#" id="back_g">︽</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="search">
+			<input type="search" id="search">
+			<button id="search_btn">搜索</button>
+		</div>
+		<div class="hot_search_box">
+			<div class="hot_search">
+				<ul id="search_list">
+					<!-- 热搜列表 开头-->
+					<li>
+						<div class="img"></div>
+						<h4>仙剑奇侠传</h4>
+						<p>传说很久以前...</p>
+					</li>
+					<li>
+						<div class="img"></div>
+						<h4>仙剑奇侠传</h4>
+						<p>传说很久以前...</p>
+					</li>
+					<li>
+						<div class="img"></div>
+						<h4>仙剑奇侠传</h4>
+						<p>传说很久以前...</p>
+					</li>
+					<li>
+						<div class="img"></div>
+						<h4>仙剑奇侠传</h4>
+						<p>传说很久以前...</p>
+					</li>
+					<li>
+						<div class="img"></div>
+						<h4>仙剑奇侠传</h4>
+						<p>传说很久以前...</p>
+					</li>
+					<li>
+						<div class="img"></div>
+						<h4>仙剑奇侠传</h4>
+						<p>传说很久以前...</p>
+					</li>
+					<!-- 热搜列表  结尾-->
+				</ul>
+			</div>
+			<div class="search_content_g">
+				<span id="search_content_back_g">返回</span>
+				<ul class="search_content_list_g clearfix">
+					<!-- 搜索列表 开头 -->
+					<li>
+						<div id="novel_img_g" class="fl"></div>
+						<div id="novel_cont_g" class="fl">
+							<h4>仙剑奇侠传</h4>
+							<p>传说很久以前</p>
+						</div>
+						<div id="into_box_g" class="fr">
+							<a href="#" id="into_g">加入书架</a>
+						</div>
+					</li>
+					<li>
+						<div id="novel_img_g" class="fl"></div>
+						<div id="novel_cont_g" class="fl">
+							<h4>仙剑奇侠传</h4>
+							<p>传说很久以前</p>
+						</div>
+						<div id="into_box_g" class="fr">
+							<a href="#" id="into_g">加入书架</a>
+						</div>
+					</li>
+					<li>
+						<div id="novel_img_g" class="fl"></div>
+						<div id="novel_cont_g" class="fl">
+							<h4>仙剑奇侠传</h4>
+							<p>传说很久以前</p>
+						</div>
+						<div id="into_box_g" class="fr">
+							<a href="#" id="into_g">加入书架</a>
+						</div>
+					</li>
+					<li>
+						<div id="novel_img_g" class="fl"></div>
+						<div id="novel_cont_g" class="fl">
+							<h4>仙剑奇侠传</h4>
+							<p>传说很久以前</p>
+						</div>
+						<div id="into_box_g" class="fr">
+							<a href="#" id="into_g">加入书架</a>
+						</div>
+					</li>
+					<!-- 搜索列表 结尾 -->
+				</ul>
+			</div>
+		</div>		
+		
+	</div>
+	<script src="javascripts/jquery.js"></script>
+	<script>
+		$('#login_img').on('mouseover',function(){
+			$('#myself_g').css({'display':'block'})
+		})
+		$('#back_g').on('click',function(){
+			$('#myself_g').css({'display':'none'})
+		})
+		$('#search_btn').on('click',function(){
+			$('.hot_search').css({'display':'none'})
+			$('.search_content_g').css({'display':'block'})
+		})
+		$('#search_content_back_g').on('click',function(){
+			$('.hot_search').css({'display':'block'})
+			$('.search_content_g').css({'display':'none'})
+		})
+	</script>
 </body>
 </html>
