@@ -4,85 +4,52 @@
 	<meta charset="UTF-8" />
 	
 	<title>发布小说</title>
-	<style>
-		*{
-			padding:0;
-			margin:0;
-			list-style:none;
-		}
-		.clearfix:after{
-			content: "";
-			display: block;
-			clear: both;
-		}
-		.clearfix{
-			zoom: 1;
-		}
-		#container{
-			margin:40px 30%;
-			font-size:24px;
-			padding:40px;
-			width:600px;
-		}
-		#book_name,#author{
-			width:400px;
-			height:50px;
-			margin-bottom:20px;
-		}
-		#files{
-			padding:4px;
-			font-size:24px;
-			margin-bottom:20px;
-		}
-		#content_detil{
-			min-height:200px;
-			margin-bottom:20px;
-		}
-		#sendbook,#back{
-			font-size:26px;
-			padding:6px;
-			margin-left:120px;
-		}
-		#title_img{
-			width: 150px;
-			height: 200px;
-			background-color: #ccc;
-			margin:0 auto;
-		}
-		#title_img img{
-			width: 150px;
-			height: 200px;
-		}
-	</style>
+	<link rel="stylesheet" href="stylesheets/publish.css">
 </head>
 <body>
 </script>
 </script>
 </script>
-	<div id="container">
-		<div id="title_img"></div>
-		<div>小说封面：<input type="file" id="files" accept="image/*"></div>
-		<div>小说名称：<input type="text" id="book_name"></div>
-		<div>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<input type="text" id="author"></div>
-		<div>内容详情：
-			<div id="content_detil" contenteditable="true"></div	
-		</div>
+<!-- 发表小说 -->
+<div id="container">
+	<div id="title_img"></div>
+	<div>小说封面：<input type="file" id="files" accept="image/*"></div>
+	<div>小说名称：<input type="text" id="book_name"></div>
+	<div>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<input type="text" id="author"></div>
+	<div>内容详情：
+		<div id="content_detil" contenteditable="true"></div>
 		<button id="sendbook">添加章节</button>
 		<button id="back">返回主页</button>
 	</div>
+</div>
+<!-- 发表章节 -->
+<div id="chapter_box">
+	<div class="chapter">小说章节：<input type="text" id="y_chapter"/></div>
+	<div class="area">章节详情：
+		<div style="width:860px; margin: 30px auto; height:260px;">
+			<div id="editor1" contenteditable="true"> </div>
+		</div>
+		<button id="y_btn">发布章节</button>
+		<button id="y_back">返回上一页</button>
+	</div>	
+</div>
 </body>
 <script src="javascripts/jquery.js"></script>
-	
+
 <script type="text/javascript">
-		var href='http://localhost:8000';
-		
-		$('#back').on('click',function(){
-			location.href='index.html'
-		})
-		if(localStorage.user){
-			var loginuid=JSON.parse(localStorage.user)
-			var songuid=loginuid.uid;
-		}
+	var href='http://localhost:8000';
+
+	$('#back').on('click',function(){
+		location.href='index.html'
+	})
+	$('#y_back').on('click',function(){
+		$('#chapter_box').css({'display':'none'})
+		$('#container').css({'display':'block'})
+	})
+	if(localStorage.user){
+		var loginuid=JSON.parse(localStorage.user)
+		var songuid=loginuid.uid;
+	}
 		//小说封面
 		var ximg=''
 		files.onchange=function(){
@@ -98,7 +65,7 @@
 				success(data){
 					console.log(data)
 					title_img.innerHTML=`
-						<img src="${href}${data}">
+					<img src="${href}${data}">
 					`
 					ximg=href+data
 				}
@@ -125,10 +92,12 @@
 						alert('发布成功')
 						book_name.value='';
 						author.value='';
+						$('#chapter_box').css({'display':'block'})
+						$('#container').css({'display':'none'})
 					}
 				}
 			})
 		}
-</script>
+	</script>
 
-</html>
+	</html>
