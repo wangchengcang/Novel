@@ -43,6 +43,16 @@
 			padding:6px;
 			margin-left:120px;
 		}
+		#title_img{
+			width: 150px;
+			height: 200px;
+			background-color: #ccc;
+			margin:0 auto;
+		}
+		#title_img img{
+			width: 150px;
+			height: 200px;
+		}
 	</style>
 </head>
 <body>
@@ -50,25 +60,75 @@
 </script>
 </script>
 	<div id="container">
+		<div id="title_img"></div>
+		<div>小说封面：<input type="file" id="files" accept="image/*"></div>
 		<div>小说名称：<input type="text" id="book_name"></div>
 		<div>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<input type="text" id="author"></div>
-		<div>小说封面：<input type="file" id="files" accept="image/*"></div>
 		<div>内容详情：
-			<div id="content_detil" contenteditable="true"></div>		
+			<div id="content_detil" contenteditable="true"></div	
 		</div>
-		<button id="sendbook">发布作品</button>
+		<button id="sendbook">添加章节</button>
 		<button id="back">返回主页</button>
 	</div>
 </body>
 <script src="javascripts/jquery.js"></script>
 	
 <script type="text/javascript">
-		$('#sendbook').on('click',function(){
-			location.href='chapterFile/sendChapter.html'
-		})
+		var href='http://localhost:8000';
+		
 		$('#back').on('click',function(){
 			location.href='index.html'
 		})
+		if(localStorage.user){
+			var loginuid=JSON.parse(localStorage.user)
+			var songuid=loginuid.uid;
+		}
+		//小说封面
+		var ximg=''
+		files.onchange=function(){
+			var a=files.files[0];
+			var b=new FormData;
+			b.append('img',a)
+			$.ajax({
+				type:'post',
+				url:href+'/users/xsimg',
+				data:b,
+				contentType:false,
+				processData:false,
+				success(data){
+					console.log(data)
+					title_img.innerHTML=`
+						<img src="${href}${data}">
+					`
+					ximg=href+data
+				}
+			})
+		}
+		console.log(ximg)
+		var xqa=$('#content_detil').html();
+		console.log(xqa)
+		//发布小说
+		sendbook.onclick=function(){
+			$.ajax({
+				type:'post',
+				url:href+'/users/set_text',
+				data:{
+					titleimg:ximg,
+					title:book_name.value,
+					name:author.value,
+					xq:$('#content_detil').html(),
+					songuid:songuid,
+				},
+				success(data){
+					console.log(data)
+					if(data='ok'){
+						alert('发布成功')
+						book_name.value='';
+						author.value='';
+					}
+				}
+			})
+		}
 </script>
 
 </html>

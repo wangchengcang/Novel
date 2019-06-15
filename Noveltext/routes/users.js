@@ -60,5 +60,31 @@ router.post('/in',function(req,res){
 		}
 		
 	})
+})
+//小说封面
+//xsimg
+router.post('/xsimg',function(req,res){
+ 	var f=req.files[0];
+ 	console.log(f)
+ 	var name=f.filename;
+	var newname=name+path.parse(f.originalname).ext;
+	fs.renameSync('./public/file/'+name,'./public/file/'+newname)
+	res.send('/file/'+newname)
+})
+//发布小说
+router.post('/set_text',function(req,res){
+	var json=req.body;
+	console.log(json)
+	sql.con({
+		arr:[json.titleimg,json.title,json.name,json.xq,json.songuid],
+		sql:'insert into xs(ximg,xtitle,xname,xcontent,songuid) values(?,?,?,?,?)',
+		success(data){
+			res.send('ok')
+		},
+		error(err){
+			res.send(err)
+		}
+		
+	})
 })	
 module.exports = router;

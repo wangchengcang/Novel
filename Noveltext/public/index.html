@@ -115,9 +115,7 @@
 	</div>
 	<script src="javascripts/jquery.js"></script>
 	<script>
-		$('#user_img').on('mouseover',function(){
-			$('#myself_g').css({'display':'block'})
-		})
+		
 		$('#back_g').on('click',function(){
 			$('#myself_g').css({'display':'none'})
 		})
@@ -143,6 +141,9 @@
 				${loginuid.name}
 			`
 			user_name_a.style.display="none"
+			$('#user_img').on('mouseover',function(){
+				$('#myself_g').css({'display':'block'})
+			})
 		}
 		
 	</script>
