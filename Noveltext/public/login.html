@@ -82,7 +82,7 @@
 		<a href="index.html" id="back_g">←</a>
 		<div class="logo">注册</div>
 		<div id="user_img"></div>
-		<div><input type="file" id="files" style="border:none"></div>
+		<div><input type="file" id="files" style="border:none" accept="image/*"></div>
 		<div>昵称：</div>
 		<div><input type="text" id="user_name" placeholder="请输入昵称"></div>
 		<div>账号：</div>
@@ -109,9 +109,87 @@
 			$('.login').css({'display':'block'})
 		})
 		$('#go_logon').on('click',function(){
-			$('.login').css({'display':'none'})
 			$('.logon').css({'display':'block'})
+			$('.login').css({'display':'none'})
 		})
+		var href='http://localhost:8000';
+		var ig=''
+		files.onchange=function(){
+			var a=files.files[0];
+			var b=new FormData;
+			b.append('img',a)
+			$.ajax({
+				type:'post',
+				url:href+'/users/img',
+				data:b,
+				contentType:false,
+				processData:false,
+				success(data){
+					user_img.innerHTML=`
+						<img src="${href}${data}">
+					`
+					ig=href+data
+				}
+			})
+		}
+		//注册
+		logon_btn.onclick=function(){
+			if(ig==''){
+				alert('请选择上传头像')
+			}else if(user_name.value==''){
+				alert('请编辑昵称')
+			}else if(user_up.value==''){
+				alert('请输入账号')
+			}else if(pass_up.value==''){
+				alert('请输入密码')
+			}else{
+				$.ajax({
+					type:'post',
+					url:href+'/users/zc',
+					data:{
+						name:user_name.value,
+						user:user_up.value,
+						pass:pass_up.value, 
+						img:ig
+					},
+					success(data){
+						if(data=='ok'){
+							alert('注册成功');
+							$('.logon').css({'display':'none'})
+							$('.login').css({'display':'block'})
+						}else{
+							alert('该用户已被注册')
+							user_name.value='';
+							user_up.value='';
+							pass_up.value='';
+						}
+					}
+				})
+			}
+		}
+		//登录	
+		login_btn.onclick=function(){
+			$.ajax({
+				type:'post',
+				url:href+'/users/in',
+				data:{
+					user:user_in.value,
+					pass:pass_in.value,
+				},
+				success(data){
+					console.log(data)
+					if(data=='ok'){
+						alert('账号或密码错误');
+						user_in.value='';
+						pass_in.value='';
+					}else{
+						alert('登录成功');
+						location.href='./index.html';
+						localStorage.user = JSON.stringify(data)
+					}
+				}
+			})
+		}
 	</script>
 </body>
 </html>

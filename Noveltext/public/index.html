@@ -4,20 +4,19 @@
 	<meta charset="UTF-8">
 	<title>只有你想不到，没有我找不到</title>
 	<link rel="stylesheet" href="stylesheets/style.css">
+
 </head>
 <body>
 	<div class="box">
 		<div class="top clearfix">
-			<h4 class="fl">王成仓</h4>
 			<div id="user_img" class="fr clearfix">
-				<a href="login.html" class="fl">
-					<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2716092914,1740098833&fm=26&gp=0.jpg" alt="" id="login_img">
-				</a>
-				<span id="user_name">未登录</span>
+				<div id="title"></div>
+				<span id="user_name"></span>
+				<span id="user_name_a">未登录</span>
 				<ul id="myself_g">
-					<li><a href="#">观看记录</a></li>
+					<li><a href="#">个人中心</a></li>
 					<li><a href="#">书架</a></li>
-					<li><a href="Y-sendbook.html">发表</a></li>
+					<li><a href="#">发表</a></li>
 					<li><a href="#">退出登录</a></li>
 					<li><a href="#" id="back_g">︽</a></li>
 				</ul>
@@ -116,7 +115,7 @@
 	</div>
 	<script src="javascripts/jquery.js"></script>
 	<script>
-		$('#login_img').on('mouseover',function(){
+		$('#user_img').on('mouseover',function(){
 			$('#myself_g').css({'display':'block'})
 		})
 		$('#back_g').on('click',function(){
@@ -130,6 +129,22 @@
 			$('.hot_search').css({'display':'block'})
 			$('.search_content_g').css({'display':'none'})
 		})
+		var href='http://localhost:8000'
+		user_name_a.onclick=function(){
+			location.href='./login.html'
+		}
+		if(localStorage.user){
+			var loginuid=JSON.parse(localStorage.user)
+			console.log(loginuid)
+			title.innerHTML=`
+				<img src="${loginuid.img}">
+			`
+			user_name.innerHTML=`
+				${loginuid.name}
+			`
+			user_name_a.style.display="none"
+		}
+		
 	</script>
 </body>
 </html>

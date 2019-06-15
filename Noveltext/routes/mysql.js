@@ -1,9 +1,9 @@
 var mysql=require('mysql');
 var pool=mysql.createPool({
-	host:'192.168.43.207',
+	host:'127.0.0.1',
 	user:'root',
 	password:'root',
-	database:'user'
+	database:'uuu'
 })
 module.exports={
 	con(json){
