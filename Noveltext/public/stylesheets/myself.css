@@ -84,13 +84,13 @@
 .myself_box_content_box{
 	width: 100%;
 	height: auto;
+	padding-top: 20px;
 }
-.myself_box_content_box>h4{
+.myself_box_content_box>a{
 	font-size: 20px;
-	margin-top: 10px;
 	margin-left: 30px;
 }
-.myself_box_content_box>h4:hover{
+.myself_box_content_box>a:hover{
 	color:red;
 }
 /*我的小说*/
@@ -120,21 +120,33 @@
 }
 #myslef_list li h4{
 	display: inline-block;
-	margin-top: 50px;
+	margin-top: 30px;
 	margin-left: 160px;
+	margin-bottom: 20px;
 	font-size: 18px;
 }
 #myslef_list li p{
-	margin-top: 20px;
 	font-size: 16px;
 	margin-left: 160px;
-	color:#2f2;
+	color:#eee;
+	margin-bottom: 10px;
+}
+#myslef_list li p:last-of-type{
+	width: 600px;
+}
+#myslef_begin_btn{
+	position: absolute;
+	right:200px;
+	top: 95px;
+	padding: 10px;
+	background-color:pink;
+	border-radius: 30px;
 }
 #myslef_delete_btn{
 	position: absolute;
 	right: 100px;
 	top: 95px;
 	padding: 10px;
-	background-color:pink;
+	background-color:#cccc;
 	border-radius: 30px;
 }
