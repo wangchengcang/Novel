@@ -18,62 +18,31 @@
 		<div class="myself_box_content">
 			<div class="myself_box_content_nav clearfix">
 				<a href="#" id="myslef_novel" class="fl">我的小说</a>
-				<a href="#" id="myself_records" class="fr">浏览记录</a>
+				<a href="#" id="myself_records" class="fl">浏览记录</a>
+				<a href="#" id="myslef_bookshelf" class="fr">书架</a>
 			</div>
 			<div class="myself_box_content_box">
-				<ul id="myslef_novel_list">
+				<h4>返回</h4>
+				<ul id="myslef_list">
 					<li class="clearfix">
-						<div class="novel_img"></div>
+						<div class="myslef_img"></div>
 						<h4>仙剑奇侠传1</h4>
-						<p>传说很久以前...</p>
-						<a href="#" id="novel_delete_btn">删除</a>
+						<p>王成仓</p>
+						<a href="#" id="myslef_delete_btn">删除</a>
 					</li>
 					<li class="clearfix">
-						<div class="novel_img"></div>
+						<div class="myslef_img"></div>
 						<h4>仙剑奇侠传1</h4>
-						<p>传说很久以前...</p>
-						<a href="#" id="novel_delete_btn">删除</a>
-					</li>
-					<li class="clearfix">
-						<div class="novel_img"></div>
-						<h4>仙剑奇侠传1</h4>
-						<p>传说很久以前...</p>
-						<a href="#" id="novel_delete_btn">删除</a>
-					</li>
-				</ul>
-				<ul id="myslef_records_list">
-					<li class="clearfix">
-						<div class="records_img"></div>
-						<h4>仙剑奇侠传2</h4>
-						<p>传说很久以前...</p>
-						<a href="#" id="records_delete_btn">删除</a>
-					</li>
-					<li class="clearfix">
-						<div class="records_img"></div>
-						<h4>仙剑奇侠传2</h4>
-						<p>传说很久以前...</p>
-						<a href="#" id="records_delete_btn">删除</a>
-					</li>
-					<li class="clearfix">
-						<div class="records_img"></div>
-						<h4>仙剑奇侠传2</h4>
-						<p>传说很久以前...</p>
-						<a href="#" id="records_delete_btn">删除</a>
-					</li>
+						<p>王成仓</p>
+						<a href="#" id="myslef_delete_btn">删除</a>
+					</li>	
 				</ul>
 			</div>
 		</div>
 	</div>
 	<script src="javascripts/jquery.js"></script>
 	<script>
-		$('#myslef_novel').on('click',function(){
-			$('#myslef_novel_list').css({'display':'block'})
-			$('#myslef_records_list').css({'display':'none'})
-		})
-		$('#myself_records').on('click',function(){
-			$('#myslef_novel_list').css({'display':'none'})
-			$('#myslef_records_list').css({'display':'block'})
-		})
+
 	</script>
 </body>
 </html>

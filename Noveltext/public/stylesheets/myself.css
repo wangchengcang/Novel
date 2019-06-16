@@ -29,8 +29,9 @@
 .myself_box_top{
 	width: 100%;
 	height: 60px;
+	padding-left: 10px;
 	line-height: 60px;
-	background-color: green;
+	background-color: #fff;
 	position: relative;
 }
 .myself_box_top h4{
@@ -65,15 +66,16 @@
 	width: 100%;
 	height: auto;
 }
-/*我的小说和我的浏览记录两个按钮*/
+/*个人中心导航*/
 .myself_box_content_nav{
 	width: 100%;
+	display: flex;
 	height: 50px;
 	line-height: 50px;
 }
-#myslef_novel,#myself_records{
+.myself_box_content_nav a{
+	flex:1;
 	display: block;
-	width: 50%;
 	text-align: center;
 	background-color:#ccc;
 	border:solid #000 1px;
@@ -83,89 +85,52 @@
 	width: 100%;
 	height: auto;
 }
+.myself_box_content_box>h4{
+	font-size: 20px;
+	margin-top: 10px;
+	margin-left: 30px;
+}
+.myself_box_content_box>h4:hover{
+	color:red;
+}
 /*我的小说*/
-#myslef_novel_list{
+#myslef_list{
 	width: 100%;
 	height: auto;
-	/*display: none;*/
+	padding: 30px;
 }
-#myslef_novel_list li{
+#myslef_list li{
 	width: 100%;
 	height: 200px;
-	border-bottom: solid #000 1px;
+	background-color:#716e6d;
 	margin-bottom: 10px;
-	line-height: 20px;
 	position: relative;
 }
-.novel_img{
-	width: 100px;
-	height: 200px;
+.myslef_img{
+	width: 140px;
+	height: 180px;
 	background-color:red;
 	position: absolute;
-	left: 0;
+	top: 10px;
+	left: 10px;
 }
-.novel_img img{
+.myslef_img img{
 	width: 100%;
 	height: 100%;
 }
-#myslef_novel_list li h4{
-	margin-left: 120px;
+#myslef_list li h4{
 	display: inline-block;
 	margin-top: 50px;
-	font-size: 14px;
+	margin-left: 160px;
+	font-size: 18px;
 }
-#myslef_novel_list li p{
+#myslef_list li p{
 	margin-top: 20px;
-	margin-left: 120px;
-	font-size: 12px;
-	color:#ccc;
+	font-size: 16px;
+	margin-left: 160px;
+	color:#2f2;
 }
-#novel_delete_btn{
-	position: absolute;
-	right: 100px;
-	top: 95px;
-	padding: 10px;
-	background-color:pink;
-	border-radius: 30px;
-}
-/*浏览记录*/
-#myslef_records_list{
-	width: 100%;
-	height: auto;
-	display: none;
-}
-#myslef_records_list li{
-	width: 100%;
-	height: 200px;
-	border-bottom: solid #000 1px;
-	margin-bottom: 10px;
-	line-height: 20px;
-	position: relative;
-}
-.records_img{
-	width: 100px;
-	height: 200px;
-	background-color:red;
-	position: absolute;
-	left: 0;
-}
-.records_img img{
-	width: 100%;
-	height: 100%;
-}
-#myslef_records_list li h4{
-	margin-left: 120px;
-	display: inline-block;
-	margin-top: 50px;
-	font-size: 14px;
-}
-#myslef_records_list li p{
-	margin-top: 20px;
-	margin-left: 120px;
-	font-size: 12px;
-	color:#ccc;
-}
-#records_delete_btn{
+#myslef_delete_btn{
 	position: absolute;
 	right: 100px;
 	top: 95px;
