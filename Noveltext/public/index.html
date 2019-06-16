@@ -9,6 +9,17 @@
 			width:100%;
 			height:150px;
 		}
+		#e_xq{
+			width:400px;
+			height: 150px;
+			line-height:30px;
+			color: #ccc;
+			overflow:hidden;
+			position:absolute;
+			top:100px;
+			left:400px;
+			text-indent: 2rem;
+		}
 	</style>
 </head>
 <body>
@@ -19,14 +30,9 @@
 			<span id="user_name_a">未登录</span>
 			<div id="ba">
 				<ul id="myself_g">
-<<<<<<< HEAD
-					<li><a href="#">个人中心</a></li>
-=======
 					<li><a href="myself.html">个人中心</a></li>
-					<li><a href="#">书架</a></li>
->>>>>>> 6a86b98bd6781a92f98e737a1625ef077b009dd1
 					<li><a href="Y-sendbook.html">发表</a></li>
-					<li><a href="#">退出登录</a></li>
+					<li id="Sign"><a href="#">退出登录</a></li>
 					<li><a href="#" id="back_g">︽</a></li>
 				</ul>
 			</div>
@@ -89,6 +95,15 @@
 
 	<script src="javascripts/jquery.js"></script>
 	<script>
+		var href='http://localhost:8000';
+		//退出登录
+		Sign.onclick=function(){
+			var a=confirm('确定要离开我吗？？？')
+			if(a){
+			    localStorage.clear();
+				location.href='./login.html'
+			}
+		}
 		$('#back_g').on('click',function(){
 			$('#myself_g').css({'display':'none'})
 		})
@@ -100,15 +115,10 @@
 			$('.hot_search').css({'display':'block'})
 			$('.search_content_g').css({'display':'none'})
 		})
-		/*e.onclick=function(){
-			el.style.top=0+'px';
-			el.style.transition=0.5+'s';
-		}*/
 		list_t.onclick=function(){
 			el.style.top=-500+'px';
 			el.style.transition=0.5+'s';
 		}
-		var href='http://localhost:8000'
 		user_name_a.onclick=function(){
 			location.href='./login.html'
 		}
@@ -141,6 +151,7 @@
 					text:search.value
 				},
 				success(data){
+					console.log(data)
 					var str='';
 					for(var i=0;i<data.length;i++){
 						str+=`
@@ -151,9 +162,9 @@
 									<p>${data[i].xname}</p>
 								</div>
 								<div id="a">${data[i].xcontent}</div>
-								<div id="rd" onclick="all_xq('${data[i].uid}','${data[i].ximg}','${data[i].xtitle}')">开始阅读</div>
+								<div id="rd" onclick="all_xq('${data[i].uid}','${data[i].ximg}','${data[i].xtitle}','${useruid}','${data[i].xcontent}')">开始阅读</div>
 								<div id="into_box_g" class="fr">
-									<a href="#" id="into_g">加入书架</a>
+									<a href="#" id="into_g" onclick="Join('${data[i].uid}','${data[i].ximg}','${data[i].xtitle}','${data[i].xcontent}','${data[i].xname}')">加入书架</a>
 								</div>
 							</li>
 						`
@@ -172,11 +183,10 @@
          		for(var i=0;i<6;i++){
          			str+=`
 						<li>
-							<div class="img" onclick="all_xq('${data[i].uid}','${data[i].ximg}','${data[i].xtitle}')"><img src="${data[i].ximg}"></div>
+							<div class="img" onclick="all_xq('${data[i].uid}','${data[i].ximg}','${data[i].xtitle}','${useruid}','${data[i].xcontent}','${data[i].xname}')"><img src="${data[i].ximg}"></div>
 							<h4>${data[i].xtitle}</h4>
 						</li>
          			`
-
          		}
          		search_list.innerHTML=str
 			}
@@ -187,16 +197,17 @@
 			el.style.top=-500+'px';
 		}
 		//点击小说看详情
-		function all_xq(a,img,title){
+		function all_xq(a,img,title,useruid,xq,name){
 			xi.style.top=0+'px';
 			xi.style.transition=0.5+'s';
+			console.log(useruid)
 			$('#myself_g').css({'display':'none'})
 			console.log(a)
 			$.ajax({
 				type:'post',
 				url:href+'/users/xq',
 				data:{
-					uid:a
+					uid:a,
 				},
 				success(data){
 					console.log(data)
@@ -206,6 +217,8 @@
 						</div>
 						<span id="d">${title}</span>
 						<div id="e" onclick="aal('${a}')">评论</div>
+						<div id="e_xq">${xq}</div>
+						<div id="jia" onclick="Join('${a}','${img}','${title}','${xq}','${name}')">加入书架</div>
 					`
 					d.innerHTML=`${title}`
 					str=''
@@ -215,6 +228,31 @@
 						`
 					}
 					g.innerHTML=str
+				}
+			})
+
+		}
+		//加入书架
+		function Join(a,b,c,xq,name){
+			console.log(a,b,c)
+			$.ajax({
+				type:'post',
+				url:href+'/users/shu',
+				data:{
+					songuid:a,
+					img:b,
+					name:c,
+					xq:xq,
+					aname:name
+				},
+				success(data){
+					console.log(data)
+					if(data=='ok'){
+						alert('加入成功');
+						
+					}else{
+						alert('此书已被加入书架')
+					}
 				}
 			})
 		}

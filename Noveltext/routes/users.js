@@ -23,7 +23,7 @@ router.post('/zc',function(req,res){
 	var json=req.body;
 	sql.con({
 		arr:[json.user],
-		sql:'select user from usera where user=?',
+		sql:'select * from usera where user=?',
 		success(data){
 			if(data.length){
 				res.send('no')
@@ -151,6 +151,21 @@ router.post('/xq',function(req,res){
 		
 	})
 })
+//nameuid
+/*router.post('/nameuid',function(req,res){
+	var json=req.body;
+	sql.con({
+		arr:[json.uid],
+		sql:'insert into xs(useruid) values(?)',
+		success(data){
+			console.log(data)
+		},
+		error(err){
+			res.send(err)
+		}
+	})
+})*/
+
 //小锁内容
 //concent
 router.post('/concent',function(req,res){
@@ -189,7 +204,92 @@ router.post('/comment_list',function(req,res){
 	var json=req.body;
 	sql.con({
 		arr:[json.uid],
-		sql:'select * from comment where xsuid=?',
+		sql:'select * from comment where xsuid=? order by uid desc',
+		success(data){
+			res.send(data)
+		},
+		error(err){
+			res.send(err)
+		}
+		
+	})
+})
+//个人中心我的小说
+//my_comment
+router.post('/my_comment',function(req,res){
+	var json=req.body;
+	sql.con({
+		arr:[json.uid],
+		sql:'select * from xs where songuid=?',
+		success(data){
+			res.send(data)
+		},
+		error(err){
+			res.send(err)
+		}
+		
+	})
+})
+//小说UID加入书架
+router.post('/shu',function(req,res){
+	var json=req.body;
+	sql.con({
+		arr:[json.name],
+		sql:'select * from shu where name=?',
+		success(data){
+			if(data.length){
+				res.send('no')
+			}else{
+				sql.con({
+					arr:[json.img,json.name,json.songuid,json.xq,json.aname],
+					sql:'insert into shu(img,name,songuid,xq,zn) values(?,?,?,?,?)',
+					success(data){
+						res.send('ok')
+					},
+					error(err){
+						res.send(err)
+					}
+				})
+			}
+		}
+	})
+})
+//我的书架
+router.post('/shujia',function(req,res){
+	sql.con({
+		arr:[],
+		sql:'select * from shu',
+		success(data){
+			res.send(data)
+		},
+		error(err){
+			res.send(err)
+		}
+		
+	})
+})
+//我的书架删除
+//delect
+router.post('/delect',function(req,res){
+	var json=req.body;
+	sql.con({
+		arr:[json.uid],
+		sql:'delete from shu where uid=?',
+		success(data){
+			res.send(data)
+		},
+		error(err){
+			res.send(err)
+		}
+		
+	})
+})
+//我的发表查看和阅读
+router.post('/read',function(req,res){
+	var json=req.body;
+	sql.con({
+		arr:[json.uid],
+		sql:'select * from list where xsuid=?',
 		success(data){
 			res.send(data)
 		},

@@ -4,6 +4,36 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="stylesheets/myself.css">
+	<style>
+		.clear{
+			background-color:#ccc;
+		}
+		.myself_box_content_nav{
+			width: 100%;
+			height: 60px;
+			display: flex;
+		}
+		.myself_box_content_nav li{
+			text-align: center;
+			line-height:60px;
+			list-style: none;
+			flex:1;
+		}
+		.myself_box_content_nav li a{
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			text-decoration: none;
+			font-size: 15px;
+		}
+		#context{
+			width:380px;
+			height:auto;
+			position:absolute;
+			top:30px;
+			left:300px;
+		}
+	</style>
 </head>
 <body>
 	<div class="myself_box">
@@ -12,19 +42,19 @@
 			<div id="myself_box_img">
 			</div>
 			<span id="myself_box_username">
-				我草你妈
+				
 			</span>
 		</div>
 		<div class="myself_box_content">
-			<div class="myself_box_content_nav clearfix">
-				<a href="#" id="myslef_novel" class="fl">我的小说</a>
-				<a href="#" id="myself_records" class="fl">浏览记录</a>
-				<a href="#" id="myslef_bookshelf" class="fr">书架</a>
-			</div>
+			<ul class="myself_box_content_nav clearfix">
+				<li class="clear"><a href="#" id="a1">我发表的小说</a></li>
+				<li><a href="#" id="a2">浏览记录</a></li>
+				<li><a href="#" id="a3">书架</a></li>
+			</ul>
 			<div class="myself_box_content_box">
 				<a href="index.html">返回</a>
 				<ul id="myslef_list">
-					<li class="clearfix">
+					<!-- <li class="clearfix">
 						<div class="myslef_img"></div>
 						<h4>仙剑奇侠传1</h4>
 						<p>王成仓</p>
@@ -39,13 +69,270 @@
 						<p>大姐大大捷安达咔哒扩大到卡迪那萨克达的克拉杜卡迪卡达科技大健康你看打开了对嘛对嘛零度可乐美利达曼德拉美丽的拉大马拉多打了打莫德雷德</p>
 						<a href="#" id="myslef_begin_btn">开始阅读</a>
 						<a href="#" id="myslef_delete_btn">删除</a>
-					</li>	
+					</li> -->	
 				</ul>
 			</div>
+		</div>
+		<div id="xi">
+			<p id="t">x</p>
+			<h id="c">小说内容</h>
+			<div id="aal">
+				<!-- <div id="al_div"></div>
+				<span id="d"></span>
+				<div id="e">评论</div> -->
+			</div>
+			<div id="f">
+				<ul id="g">
+
+				</ul>
+			</div>
+			<!-- 展示小说章节内容 -->
+			<div id="Chapter">
+				<!-- <span id="back">退出</span>
+				<header id="title_Chapter">标题</header>
+				<main id="content_Chapter">内容</main> -->
+			</div>
+		</div>
+		<!-- 评论 -->
+		<div id="el">
+			<span id="list_t">x</span>
+			<div id="list_d">
+				<ul id="list_ul">
+					<!-- <li>
+						<div id="img_list_e"></div>
+						<span id="list_name">他他他</span>
+						<p>ffffff爱的发的发送到发送到发送到发沙发是的发送到发沙发是的发送到发沙发是的发送到发送到发送到发生</p>
+					</li> -->
+				</ul>
+			</div>
+			<div id="list_my_text"><input type="text" id="list_content"><button id="list_btn">发表</button></div>
 		</div>
 	</div>
 	<script src="javascripts/jquery.js"></script>
 	<script>
+		t.onclick=function(){
+			xi.style.top=-100+'%';
+			xi.style.transition=0.5+'s';
+			el.style.top=-500+'px';
+			el.style.transition=0.5+'s';
+		}
+		list_t.onclick=function(){
+			el.style.top=-500+'px';
+			el.style.transition=0.5+'s';
+		}
+		var oa=document.querySelectorAll('.myself_box_content_nav li')
+		console.log(oa)
+		for(var i=0;i<oa.length;i++){
+			oa[i].index=i;
+			oa[i].onclick=function(){
+				for(var i=0;i<oa.length;i++){
+					oa[i].className='';
+				}
+				oa[this.index].className='clear'
+			}
+		}
+		if(localStorage.user){
+			var loginuid=JSON.parse(localStorage.user)
+			var uid=loginuid.uid;
+			myself_box_img.innerHTML=`
+				<img src="${loginuid.img}">
+			`
+			myself_box_username.innerHTML=`
+				${loginuid.name}
+			`
+		}
+		if(localStorage.uid){
+			var id=JSON.parse(localStorage.uid)
+			console.log(id)
+		}else{
+
+		}
+		var href='http://localhost:8000'
+		//我的小说
+		a1.onclick=function(){
+			myslef_list.innerHTML=''
+			al();
+		}
+		al()
+		function al(){
+			$.ajax({
+				type:'post',
+				url:href+'/users/my_comment',
+				data:{
+					uid:uid
+				},
+				success(data){
+					console.log(data)
+					var str=''
+					for(var i=0;i<data.length;i++){
+						str+=`
+							<li class="clearfix" style="position:relative;">
+								<div class="myslef_img"><img src="${data[i].ximg}" alt="" /></div>
+								<h4>${data[i].xtitle}</h4>
+								<p>作者：${data[i].xname}</p>
+								<div id="context">${data[i].xcontent}</div>
+								<div id="myslef_begin_btn" onclick="rd('${data[i].ximg}','${data[i].xtitle}','${data[i].xname}','${data[i].xcontent}','${data[i].uid}','${data[i].xcontent}')">开始阅读</div>
+							</li>
+						`
+					}
+					myslef_list.innerHTML=str
+				}
+			})
+		}
+		//下拉框
+		function rd(a,b,c,d,uid,xq){
+			xi.style.top=0+'px';
+			xi.style.transition=0.5+'s';
+			var str=''
+			str+=`
+				<div id="al_div">
+					<img src="${a}" alt="" />
+				</div>
+				<span id="d">${b}</span>
+				<div id="e_xq">${xq}</div>
+				<div id="e" onclick="comment('${uid}')">评论</div>
+			`
+			aal.innerHTML=str
+			$.ajax({
+				type:'post',
+				url:href+'/users/read',
+				data:{
+					uid:uid
+				},
+				success(data){
+					console.log(data)
+					var str='';
+					for(var i=0;i<data.length;i++){
+						str+=`
+							<li onclick="list_text('${data[i].uid}')">${data[i].ztitle}</li>
+						`
+					}
+					g.innerHTML=str
+					
+				}
+			})
+		}
+		//阅读
+		function list_text(a){
+			Chapter.style.left=0+'%';
+			Chapter.style.transition=0.5+'s';
+			$.ajax({
+				type:'post',
+				url:href+'/users/concent',
+				data:{
+					uid:a,
+				},
+				success(data){
+					str='';
+					str+=`
+						<span id="back" onclick="ttt()">退出</span>
+						<header id="title_Chapter">${data[0].ztitle}</header>
+						<main id="content_Chapter">${data[0].zcontent}</main>
+					`
+					Chapter.innerHTML=str
+				}
+			})
+		}
+		function ttt(){
+			Chapter.style.left=-100+'%';
+			Chapter.style.transition=0.5+'s';
+		}
+		//评论
+		function comment(d){
+			el.style.top=0+'px';
+			el.style.transition=0.5+'s';
+			list_btn.onclick=function(){
+				$.ajax({
+					type:'post',
+					url:href+'/users/comment',
+					data:{
+						username:loginuid.name,
+						userimg:loginuid.img,
+						content:list_content.value,
+						xsuid:d,
+						useruid:loginuid.uid
+					},
+					success(data){
+						alert('发表成功');
+						list_content.value='';
+						elele()
+					}
+				})
+			}
+			//获取评论
+			elele()
+			function elele(){
+				$.ajax({
+				type:'post',
+				url:href+'/users/comment_list',
+				data:{
+					uid:d
+				},
+				success(data){
+					console.log(data)
+					str='';
+					for(var i=0;i<data.length;i++){
+						str+=`
+							<li>
+								<div id="img_list_e">
+									<img src="${data[i].userimg}" alt="" />
+								</div>
+								<span id="list_name">${data[i].username}</span>
+								<p>${data[i].content}</p>
+							</li>
+						`
+					}
+					list_ul.innerHTML=str
+				}
+			})
+			}
+		}
+		//删除
+		function delect_list(a){
+			$.ajax({
+				type:'post',
+				url:href+'/users/delect',
+				data:{
+					uid:a
+				},
+				success(data){
+					console.log(data)
+					all()
+				}
+			})
+		}
+		a2.onclick=function(){
+			myslef_list.innerHTML=''
+			all()
+		}
+		a3.onclick=function(){
+			myslef_list.innerHTML=''
+			all()
+		}
+		//函数封装
+		function all(){
+			$.ajax({
+				type:'post',
+				url:href+'/users/shujia',
+				success(data){
+					console.log(data)
+					var str=''
+					for(var i=0;i<data.length;i++){
+						str+=`
+							<li class="clearfix" style="position:relative;">
+								<div class="myslef_img"><img src="${data[i].img}" alt="" /></div>
+								<h4>${data[i].name}</h4>
+								<p>作者：${data[i].zn}</p>
+								<div id="context">${data[i].xq}</div>
+								<div id="myslef_begin_btn" onclick="rd('${data[i].img}','${data[i].name}','${data[i].zn}','${data[i].xq}','${data[i].songuid}','${data[i].xq}')">开始阅读</div>
+								<button onclick="delect_list('${data[i].uid}')" id="myslef_delete_btn")">删除</button>
+							</li>	
+						`
+					}
+					myslef_list.innerHTML=str
+				}
+			})
+		}
 
 	</script>
 </body>
