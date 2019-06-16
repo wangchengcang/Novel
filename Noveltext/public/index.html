@@ -4,18 +4,22 @@
 	<meta charset="UTF-8">
 	<title>只有你想不到，没有我找不到</title>
 	<link rel="stylesheet" href="stylesheets/style.css">
-
+	<style>
+		.img img{
+			width:100%;
+			height:150px;
+		}
+	</style>
 </head>
 <body>
 	<div class="box">
 		<div class="top clearfix">
-			<div id="user_img" class="fr clearfix">
-				<div id="title"></div>
-				<span id="user_name"></span>
-				<span id="user_name_a">未登录</span>
+			<div id="title"></div>
+			<span id="user_name"></span>
+			<span id="user_name_a">未登录</span>
+			<div id="ba">
 				<ul id="myself_g">
 					<li><a href="#">个人中心</a></li>
-					<li><a href="#">书架</a></li>
 					<li><a href="Y-sendbook.html">发表</a></li>
 					<li><a href="#">退出登录</a></li>
 					<li><a href="#" id="back_g">︽</a></li>
@@ -23,99 +27,63 @@
 			</div>
 		</div>
 		<div class="search">
-			<input type="search" id="search">
+			<input type="text" id="search">
 			<button id="search_btn">搜索</button>
 		</div>
 		<div class="hot_search_box">
 			<div class="hot_search">
 				<ul id="search_list">
 					<!-- 热搜列表 开头-->
-					<li>
-						<div class="img"></div>
-						<h4>仙剑奇侠传</h4>
-						<p>王成仓</p>
-					</li>
-					<li>
-						<div class="img"></div>
-						<h4>仙剑奇侠传</h4>
-						<p>王成仓</p>
-					</li>
-					<li>
-						<div class="img"></div>
-						<h4>仙剑奇侠传</h4>
-						<p>王成仓</p>
-					</li>
-					<li>
-						<div class="img"></div>
-						<h4>仙剑奇侠传</h4>
-						<p>王成仓</p>
-					</li>
-					<li>
-						<div class="img"></div>
-						<h4>仙剑奇侠传</h4>
-						<p>王成仓</p>
-					</li>
-					<li>
-						<div class="img"></div>
-						<h4>仙剑奇侠传</h4>
-						<p>王成仓</p>
-					</li>
-					<!-- 热搜列表  结尾-->
+					
 				</ul>
 			</div>
 			<div class="search_content_g">
 				<span id="search_content_back_g">返回</span>
-				<ul class="search_content_list_g clearfix">
+				<ul class="search_content_list_g clearfix" id="list">
 					<!-- 搜索列表 开头 -->
-					<li>
-						<div id="novel_img_g" class="fl"></div>
-						<div id="novel_cont_g" class="fl">
-							<h4>仙剑奇侠传</h4>
-							<p>传说很久以前</p>
-						</div>
-						<div id="into_box_g" class="fr">
-							<a href="#" id="into_g">加入书架</a>
-						</div>
-					</li>
-					<li>
-						<div id="novel_img_g" class="fl"></div>
-						<div id="novel_cont_g" class="fl">
-							<h4>仙剑奇侠传</h4>
-							<p>传说很久以前</p>
-						</div>
-						<div id="into_box_g" class="fr">
-							<a href="#" id="into_g">加入书架</a>
-						</div>
-					</li>
-					<li>
-						<div id="novel_img_g" class="fl"></div>
-						<div id="novel_cont_g" class="fl">
-							<h4>仙剑奇侠传</h4>
-							<p>传说很久以前</p>
-						</div>
-						<div id="into_box_g" class="fr">
-							<a href="#" id="into_g">加入书架</a>
-						</div>
-					</li>
-					<li>
-						<div id="novel_img_g" class="fl"></div>
-						<div id="novel_cont_g" class="fl">
-							<h4>仙剑奇侠传</h4>
-							<p>传说很久以前</p>
-						</div>
-						<div id="into_box_g" class="fr">
-							<a href="#" id="into_g">加入书架</a>
-						</div>
-					</li>
+					
 					<!-- 搜索列表 结尾 -->
 				</ul>
 			</div>
 		</div>		
-		
+		<!-- 小说点击查看章节 -->
+		<div id="xi">
+			<p id="t">x</p>
+			<h id="c">小说内容</h>
+			<div id="al">
+				<!-- <div id="al_div"></div>
+				<span id="d"></span>
+				<div id="e">评论</div> -->
+			</div>
+			<div id="f">
+				<ul id="g">
+				</ul>
+			</div>
+			<!-- 展示小说章节内容 -->
+			<div id="Chapter">
+				<!-- <span id="back">退出</span>
+				<header id="title_Chapter">标题</header>
+				<main id="content_Chapter">内容</main> -->
+			</div>
+		</div>
+		<!-- 评论 -->
+		<div id="el">
+			<span id="list_t">x</span>
+			<div id="list_d">
+				<ul id="list_ul">
+					<!-- <li>
+						<div id="img_list_e"></div>
+						<span id="list_name">他他他</span>
+						<p>ffffff爱的发的发送到发送到发送到发沙发是的发送到发沙发是的发送到发沙发是的发送到发送到发送到发生</p>
+					</li> -->
+				</ul>
+			</div>
+			<div id="list_my_text"><input type="text" id="list_content"><button id="list_btn">发表</button></div>
+		</div>
 	</div>
+
 	<script src="javascripts/jquery.js"></script>
 	<script>
-		
 		$('#back_g').on('click',function(){
 			$('#myself_g').css({'display':'none'})
 		})
@@ -127,6 +95,14 @@
 			$('.hot_search').css({'display':'block'})
 			$('.search_content_g').css({'display':'none'})
 		})
+		/*e.onclick=function(){
+			el.style.top=0+'px';
+			el.style.transition=0.5+'s';
+		}*/
+		list_t.onclick=function(){
+			el.style.top=-500+'px';
+			el.style.transition=0.5+'s';
+		}
 		var href='http://localhost:8000'
 		user_name_a.onclick=function(){
 			location.href='./login.html'
@@ -134,6 +110,9 @@
 		if(localStorage.user){
 			var loginuid=JSON.parse(localStorage.user)
 			console.log(loginuid)
+			var username=loginuid.name;
+			var userimg=loginuid.img;
+			var useruid=loginuid.uid;
 			title.innerHTML=`
 				<img src="${loginuid.img}">
 			`
@@ -141,11 +120,174 @@
 				${loginuid.name}
 			`
 			user_name_a.style.display="none"
-			$('#user_img').on('mouseover',function(){
-				$('#myself_g').css({'display':'block'})
-			})
+			title.onmouseover=function(){
+				myself_g.style.display='block';
+			}
 		}
 		
+		//搜索
+		search_btn.onclick=function(){
+			$('.hot_search').css({'display':'none'})
+			$('.search_content_g').css({'display':'block'})
+			$.ajax({
+				type:'post',
+				url:href+'/users/ss',
+				data:{
+					text:search.value
+				},
+				success(data){
+					var str='';
+					for(var i=0;i<data.length;i++){
+						str+=`
+							<li style="abs">
+								<div id="novel_img_g" class="fl"><img src="${data[i].ximg}"></div>
+								<div id="novel_cont_g" class="fl">
+									<h4>${data[i].xtitle}</h4>
+									<p>${data[i].xname}</p>
+								</div>
+								<div id="a">${data[i].xcontent}</div>
+								<div id="rd" onclick="all_xq('${data[i].uid}','${data[i].ximg}','${data[i].xtitle}')">开始阅读</div>
+								<div id="into_box_g" class="fr">
+									<a href="#" id="into_g">加入书架</a>
+								</div>
+							</li>
+						`
+					}
+					list.innerHTML=str
+				}
+			})
+		}
+		//热推
+		$.ajax({
+			type:'post',
+			url:href+'/users/rt',
+			success(data){
+         		console.log(data)
+         		 var str=''
+         		for(var i=0;i<6;i++){
+         			str+=`
+						<li>
+							<div class="img" onclick="all_xq('${data[i].uid}','${data[i].ximg}','${data[i].xtitle}')"><img src="${data[i].ximg}"></div>
+							<h4>${data[i].xtitle}</h4>
+						</li>
+         			`
+
+         		}
+         		search_list.innerHTML=str
+			}
+		})
+		t.onclick=function(){
+			xi.style.top=-100+'%';
+			xi.style.transition=0.5+'s';
+			el.style.top=-500+'px';
+		}
+		//点击小说看详情
+		function all_xq(a,img,title){
+			xi.style.top=0+'px';
+			xi.style.transition=0.5+'s';
+			$('#myself_g').css({'display':'none'})
+			console.log(a)
+			$.ajax({
+				type:'post',
+				url:href+'/users/xq',
+				data:{
+					uid:a
+				},
+				success(data){
+					console.log(data)
+					al.innerHTML=`
+						<div id="al_div">
+							<img src="${img}" alt="" />
+						</div>
+						<span id="d">${title}</span>
+						<div id="e" onclick="aal('${a}')">评论</div>
+					`
+					d.innerHTML=`${title}`
+					str=''
+					for(var i=0;i<data.length;i++){
+						str+=`
+							<li onclick="list_text('${data[i].uid}')">${data[i].ztitle}</li>
+						`
+					}
+					g.innerHTML=str
+				}
+			})
+		}
+		//发表/获取评论	
+		function aal(a){
+			el.style.top=0+'px';
+			el.style.transition=0.5+'s';
+			list_btn.onclick=function(){
+				$.ajax({
+					type:'post',
+					url:href+'/users/comment',
+					data:{
+						username:username=loginuid.name,
+						userimg:loginuid.img,
+						content:list_content.value,
+						xsuid:a,
+						useruid:loginuid.uid
+					},
+					success(data){
+						alert('发表成功');
+						list_content.value='';
+						elele()
+					}
+				})
+			}
+			//获取评论
+			elele()
+			function elele(){
+				$.ajax({
+				type:'post',
+				url:href+'/users/comment_list',
+				data:{
+					uid:a
+				},
+				success(data){
+					console.log(data)
+					str='';
+					for(var i=0;i<data.length;i++){
+						str+=`
+							<li>
+								<div id="img_list_e">
+									<img src="${data[i].userimg}" alt="" />
+								</div>
+								<span id="list_name">${data[i].username}</span>
+								<p>${data[i].content}</p>
+							</li>
+						`
+					}
+					list_ul.innerHTML=str
+				}
+			})
+			}
+		}
+		//小说章节内容
+		function list_text(a){
+			Chapter.style.left=0+'%';
+			Chapter.style.transition=0.5+'s';
+			$.ajax({
+				type:'post',
+				url:href+'/users/concent',
+				data:{
+					uid:a,
+				},
+				success(data){
+					str='';
+					str+=`
+						<span id="back" onclick="ttt()">退出</span>
+						<header id="title_Chapter">${data[0].ztitle}</header>
+						<main id="content_Chapter">${data[0].zcontent}</main>
+					`
+					Chapter.innerHTML=str
+				}
+			})
+		}
+		function ttt(){
+			Chapter.style.left=-100+'%';
+			Chapter.style.transition=0.5+'s';
+		}
 	</script>
 </body>
 </html>

@@ -14,8 +14,8 @@
 <div id="container">
 	<div id="title_img"></div>
 	<div>小说封面：<input type="file" id="files" accept="image/*"></div>
-	<div>小说名称：<input type="text" id="book_name"></div>
-	<div>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<input type="text" id="author"></div>
+	<div>小说名称：<input type="text" id="book_name" style="font-size: 20px;"></div>
+	<div>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<input type="text" id="author" style="font-size: 20px;"></div>
 	<div>内容详情：
 		<div id="content_detil" contenteditable="true"></div>
 		<button id="sendbook">添加章节</button>
@@ -24,7 +24,7 @@
 </div>
 <!-- 发表章节 -->
 <div id="chapter_box">
-	<div class="chapter">小说章节：<input type="text" id="y_chapter"/></div>
+	<div class="chapter">小说章节：<input type="text" id="y_chapter" style="font-size: 20px;" /></div>
 	<div class="area">章节详情：
 		<div style="width:860px; margin: 30px auto; height:260px;">
 			<div id="editor1" contenteditable="true"> </div>
@@ -74,29 +74,75 @@
 		console.log(ximg)
 		var xqa=$('#content_detil').html();
 		console.log(xqa)
+		//变量存小说uid 来区分小说章节
+		var xsuid='';
 		//发布小说
 		sendbook.onclick=function(){
-			$.ajax({
-				type:'post',
-				url:href+'/users/set_text',
-				data:{
-					titleimg:ximg,
-					title:book_name.value,
-					name:author.value,
-					xq:$('#content_detil').html(),
-					songuid:songuid,
-				},
-				success(data){
-					console.log(data)
-					if(data='ok'){
-						alert('发布成功')
-						book_name.value='';
-						author.value='';
-						$('#chapter_box').css({'display':'block'})
-						$('#container').css({'display':'none'})
+			if(ximg==''){
+				alert('请选择小说封面')
+			}else if(book_name.value==''){
+				alert('请输入小说名字')
+			}else if(author.value==''){
+				alert('作者不能为空')
+			}else if(content_detil.innerHTML==''){
+				alert('请编辑详情')
+			}else{
+				$.ajax({
+					type:'post',
+					url:href+'/users/set_text',
+					data:{
+						titleimg:ximg,
+						title:book_name.value,
+						name:author.value,
+						xq:$('#content_detil').html(),
+						songuid:songuid,
+					},
+					success(data){
+						console.log(data)
+						xsuid=data.insertId;
+						if(data){
+							alert('发布成功')
+							book_name.value='';
+							author.value='';
+							$('#content_detil').html('')
+							$('#chapter_box').css({'display':'block'})
+							$('#container').css({'display':'none'})
+						}
 					}
-				}
-			})
+				})
+			}
+			
+		}
+		y_btn.onclick=function(){
+			if(y_chapter.value==''){
+				alert('请编辑章节')
+			}else if(editor1.innerHTML==''){
+				alert('请输入本章节内容')
+			}else{
+				$.ajax({
+					type:'post',
+					url:href+'/users/set_list',
+					data:{
+						list:y_chapter.value,
+						txt:$('#editor1').html(),
+						xsuid:xsuid
+					},
+					success(data){
+	     				if(data){
+							var a=confirm('已发布成功，是否继续')
+							if(a){
+								y_chapter.value='';
+								$('#editor1').html('');
+							}else{
+								y_chapter.value='';
+								$('#editor1').html('');
+							 	location.href='./index.html'
+							}
+						}
+					}
+				})
+			}
+			
 		}
 	</script>
 
