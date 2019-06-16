@@ -1,0 +1,152 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+	box-sizing: border-box;
+}	
+.clearfix::after{
+	content:'';
+	display:block;
+	width:0;
+	height:0;
+	visibility:hidden;
+	clear:both;
+}
+.clearfix{
+	zoom:1;
+} 
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.myself_box{
+	width: 100%;
+	height: auto;
+}
+.myself_box_top{
+	width: 100%;
+	height: 60px;
+	padding-left: 10px;
+	line-height: 60px;
+	background-color: #fff;
+	position: relative;
+}
+.myself_box_top h4{
+	font-size: 20px;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
+	font-style: italic;
+	position: absolute;
+}
+#myself_box_img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color:#ccc;
+	position: absolute;
+	right:100px;
+	top:5px;
+}
+/*用户头像*/
+#myself_box_img img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+/*用户名字*/
+#myself_box_username{
+	color:red;
+	margin-right: 30px;
+	position: absolute;
+	right:0px;
+}
+.myself_box_content{
+	width: 100%;
+	height: auto;
+}
+/*个人中心导航*/
+.myself_box_content_nav{
+	width: 100%;
+	display: flex;
+	height: 50px;
+	line-height: 50px;
+}
+.myself_box_content_nav a{
+	flex:1;
+	display: block;
+	text-align: center;
+	background-color:#ccc;
+	border:solid #000 1px;
+	color:#fff;
+}
+.myself_box_content_box{
+	width: 100%;
+	height: auto;
+	padding-top: 20px;
+}
+.myself_box_content_box>a{
+	font-size: 20px;
+	margin-left: 30px;
+}
+.myself_box_content_box>a:hover{
+	color:red;
+}
+/*我的小说*/
+#myslef_list{
+	width: 100%;
+	height: auto;
+	padding: 30px;
+}
+#myslef_list li{
+	width: 100%;
+	height: 200px;
+	background-color:#716e6d;
+	margin-bottom: 10px;
+	position: relative;
+}
+.myslef_img{
+	width: 140px;
+	height: 180px;
+	background-color:red;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+.myslef_img img{
+	width: 100%;
+	height: 100%;
+}
+#myslef_list li h4{
+	display: inline-block;
+	margin-top: 30px;
+	margin-left: 160px;
+	margin-bottom: 20px;
+	font-size: 18px;
+}
+#myslef_list li p{
+	font-size: 16px;
+	margin-left: 160px;
+	color:#eee;
+	margin-bottom: 10px;
+}
+#myslef_list li p:last-of-type{
+	width: 600px;
+}
+#myslef_begin_btn{
+	position: absolute;
+	right:200px;
+	top: 95px;
+	padding: 10px;
+	background-color:pink;
+	border-radius: 30px;
+}
+#myslef_delete_btn{
+	position: absolute;
+	right: 100px;
+	top: 95px;
+	padding: 10px;
+	background-color:#cccc;
+	border-radius: 30px;
+}
