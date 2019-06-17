@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>登录注册</title>
 	<style>
 	*{
 		margin: 0;
@@ -50,18 +50,40 @@
 		outline: none;
 		border-bottom: solid #000 1px;
 	}
-	#user_img{
-		width: 100px;
-		height: 100px;
+	/*上传头像*/
+	#imgPreview {
+		width: 10%;
+		height: 130px;
 		border-radius: 50%;
-		margin: 0 auto;
-		background-color:#ccc;
+		margin: 10px auto 0px auto;
+		text-align: center;
 	}
-	#user_img img{
+	#prompt3 {
+		width: 100%;
+		height: 130px;
+		border-radius: 50%;
+		text-align: center;
+		position: relative;
+		background: url('https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3281196885,1779237671&fm=26&gp=0.jpg') no-repeat center;
+		/*display: none;*/
+		background-size: 100% 100%;
+	}
+	#files {
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+	}
+	#user_img{
 		width: 100%;
 		height: 100%;
 		border-radius: 50%;
 	}
+	#img3 {
+		height: 100%;
+		width: 100%;
+		border-radius: 50%;
+	}
+	/**/
 	#logon_btn,#login_btn{
 		width: 150px;
 		height: 40px;
@@ -81,57 +103,68 @@
 	<div class="logon">
 		<a href="index.html" id="back_g">←</a>
 		<div class="logo">注册</div>
-		<div id="user_img"></div>
-		<div><input type="file" id="files" style="border:none" accept="image/*"></div>
-		<div>昵称：</div>
-		<div><input type="text" id="user_name" placeholder="请输入昵称"></div>
-		<div>账号：</div>
-		<div><input type="text" id="user_up" placeholder="请输入账号"></div>
-		<div>密码：</div>
-		<div><input type="text" id="pass_up" placeholder="请输入密码"></div>
-		<div class="clearfix"><a href="#" id="what_login" class="fl">问题?</a><a href="#" id="go_login" class="fr">直接登陆</a></div>
-		<div style="text-align: center;"><a href="#" id="logon_btn">提交</a></div>
-	</div>
-	<div class="login">
-		<a href="index.html" id="back_g">←</a>
-		<div class="logo">登陆</div>
-		<div>账号：</div>
-		<div><input type="text" id="user_in" placeholder="请输入账号"></div>
-		<div>密码：</div>
-		<div><input type="text" id="pass_in" placeholder="请输入密码"></div>
-		<div style="text-align: right"><a href="#" id="go_logon">注册</a></div>
-		<div style="text-align: center;"><a href="#" id="login_btn">确认</a></div>
-	</div>
-	<script src="javascripts/jquery.js"></script>
-	<script>
-		$('#go_login').on('click',function(){
-			$('.logon').css({'display':'none'})
-			$('.login').css({'display':'block'})
-		})
-		$('#go_logon').on('click',function(){
-			$('.logon').css({'display':'block'})
-			$('.login').css({'display':'none'})
-		})
-		var href='http://localhost:8000';
-		var ig=''
-		files.onchange=function(){
-			var a=files.files[0];
-			var b=new FormData;
-			b.append('img',a)
-			$.ajax({
-				type:'post',
-				url:href+'/users/img',
-				data:b,
-				contentType:false,
-				processData:false,
-				success(data){
-					user_img.innerHTML=`
-						<img src="${href}${data}">
-					`
-					ig=href+data
-				}
+		<!-- ············ -->
+		<div id="imgPreview">
+			<div id="prompt3">	
+				<input type="file" id="files" onchange="changepic(this)" accept="image/jpg,image/jpeg,image/png,image/PNG">
+				<!--当vaule值改变时执行changepic函数，规定上传的文件只能是图片-->
+			</div>
+			<div id="user_img">
+				<img src="" alt="" id="img3">
+			</div>
+		</div>
+		<!-- ············ -->
+		<!-- <div id="user_img"></div>
+			<div><input type="file" id="files" style="border:none" accept="image/*"></div> -->
+			<div>昵称：</div>
+			<div><input type="text" id="user_name" placeholder="请输入昵称"></div>
+			<div>账号：</div>
+			<div><input type="text" id="user_up" placeholder="请输入账号"></div>
+			<div>密码：</div>
+			<div><input type="text" id="pass_up" placeholder="请输入密码"></div>
+			<div class="clearfix"><a href="#" id="what_login" class="fl">问题?</a><a href="#" id="go_login" class="fr">直接登陆</a></div>
+			<div style="text-align: center;"><a href="#" id="logon_btn">提交</a></div>
+		</div>
+		<div class="login">
+			<a href="index.html" id="back_g">←</a>
+			<div class="logo">登陆</div>
+			<div>账号：</div>
+			<div><input type="text" id="user_in" placeholder="请输入账号"></div>
+			<div>密码：</div>
+			<div><input type="text" id="pass_in" placeholder="请输入密码"></div>
+			<div style="text-align: right"><a href="#" id="go_logon">注册</a></div>
+			<div style="text-align: center;"><a href="#" id="login_btn">确认</a></div>
+		</div>
+		<script src="javascripts/jquery.js"></script>
+		<script>
+			$('#go_login').on('click',function(){
+				$('.logon').css({'display':'none'})
+				$('.login').css({'display':'block'})
 			})
-		}
+			$('#go_logon').on('click',function(){
+				$('.logon').css({'display':'block'})
+				$('.login').css({'display':'none'})
+			})
+			var href='http://localhost:8000';
+			var ig=''
+			files.onchange=function(){
+				var a=files.files[0];
+				var b=new FormData;
+				b.append('img',a)
+				$.ajax({
+					type:'post',
+					url:href+'/users/img',
+					data:b,
+					contentType:false,
+					processData:false,
+					success(data){
+						user_img.innerHTML=`
+						<img src="${href}${data}">
+						`
+						ig=href+data
+					}
+				})
+			}
 		//注册
 		logon_btn.onclick=function(){
 			if(ig==''){

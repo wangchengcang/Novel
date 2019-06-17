@@ -12,8 +12,15 @@
 </script>
 <!-- 发表小说 -->
 <div id="container">
-	<div id="title_img"></div>
-	<div>小说封面：<input type="file" id="files" accept="image/*"></div>
+	<div id="imgPreview">
+		<div id="prompt3">	
+			<input type="file" id="files" onchange="changepic(this)" accept="image/jpg,image/jpeg,image/png,image/PNG">
+			<!--当vaule值改变时执行changepic函数，规定上传的文件只能是图片-->
+		</div>
+		<div id="user_img">
+			<img src="" alt="" id="img3">
+		</div>
+	</div>
 	<div>小说名称：<input type="text" id="book_name" style="font-size: 20px;"></div>
 	<div>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<input type="text" id="author" style="font-size: 20px;"></div>
 	<div>内容详情：
@@ -128,7 +135,7 @@
 						xsuid:xsuid
 					},
 					success(data){
-	     				if(data){
+						if(data){
 							var a=confirm('已发布成功，是否继续')
 							if(a){
 								y_chapter.value='';
@@ -136,7 +143,7 @@
 							}else{
 								y_chapter.value='';
 								$('#editor1').html('');
-							 	location.href='./index.html'
+								location.href='./index.html'
 							}
 						}
 					}
