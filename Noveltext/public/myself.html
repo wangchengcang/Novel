@@ -42,7 +42,6 @@
 			<div id="myself_box_img">
 			</div>
 			<span id="myself_box_username">
-				
 			</span>
 		</div>
 		<div class="myself_box_content">
@@ -172,6 +171,7 @@
 								<p>作者：${data[i].xname}</p>
 								<div id="context">${data[i].xcontent}</div>
 								<div id="myslef_begin_btn" onclick="rd('${data[i].ximg}','${data[i].xtitle}','${data[i].xname}','${data[i].xcontent}','${data[i].uid}','${data[i].xcontent}')">开始阅读</div>
+								<div id="Continued">继续发表</div>
 							</li>
 						`
 					}
@@ -189,7 +189,6 @@
 					<img src="${a}" alt="" />
 				</div>
 				<span id="d">${b}</span>
-				<div id="Continued">继续发表</div>
 				<div id="e_xq">${xq}</div>
 				<div id="e" onclick="comment('${uid}')">评论</div>
 			`
@@ -316,7 +315,7 @@
 				type:'post',
 				url:href+'/users/shujia',
 				data:{
-					uid:uid
+					uid:uid,
 				},
 				success(data){
 					console.log(data)

@@ -248,8 +248,8 @@ router.post('/shu',function(req,res){
 	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	sql.con({
-		arr:[json.name],
-		sql:'select * from shu where name=?',
+		arr:[json.name,json.useruid],
+		sql:'select * from shu where name=? and useruid=?',
 		success(data){
 			if(data.length){
 				res.send('no')
