@@ -388,11 +388,15 @@
 	border-bottom: 2px solid #000;
 }
 #content_Chapter{
+	width: 100%;
+	height:550px;
 	text-indent:2rem;
 	font-size:20px;
 	line-height:30px;
+	overflow-y: auto;
 	padding: 10px;
 }
+
 #Continued{
 	width: 110px;
     height: 38px;

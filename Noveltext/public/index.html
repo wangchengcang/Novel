@@ -163,9 +163,9 @@
 									<p>${data[i].xname}</p>
 								</div>
 								<div id="a">${data[i].xcontent}</div>
-								<div id="rd" onclick="all_xq('${data[i].uid}','${data[i].ximg}','${data[i].xtitle}','${useruid}','${data[i].xcontent}')">开始阅读</div>
+								<div id="rd" onclick="all_xq('${data[i].uid}','${data[i].ximg}','${data[i].xtitle}','${data[i].songuid}','${data[i].xcontent}','${data[i].xname}')">开始阅读</div>
 								<div id="into_box_g" class="fr">
-									<a href="#" id="into_g" onclick="Join('${data[i].uid}','${data[i].ximg}','${data[i].xtitle}','${data[i].xcontent}','${data[i].xname}')">加入书架</a>
+									<a href="#" id="into_g" onclick="Join('${data[i].uid}','${data[i].ximg}','${data[i].xtitle}','${data[i].xcontent}','${data[i].xname}','${uid}')">加入书架</a>
 								</div>
 							</li>
 						`
@@ -221,9 +221,9 @@
 						<div id="e_xq">${xq}</div>
 						<div id="jia" onclick="Join('${a}','${img}','${title}','${xq}','${name}','${uid}')">加入书架</div>
 					`
-					d.innerHTML=`${title}`
 					str=''
 					for(var i=0;i<data.length;i++){
+						console.log(data[i])
 						str+=`
 							<li onclick="list_text('${data[i].uid}')">${data[i].ztitle}</li>
 						`
@@ -235,8 +235,6 @@
 		}
 		//加入书架
 		function Join(a,b,c,xq,name,useruida){
-			console.log(a,b,c)
-			console.log(useruida)
 			$.ajax({
 				type:'post',
 				url:href+'/users/shu',
