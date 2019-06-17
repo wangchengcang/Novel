@@ -189,6 +189,7 @@
 					<img src="${a}" alt="" />
 				</div>
 				<span id="d">${b}</span>
+				<div id="Continued">继续发表</div>
 				<div id="e_xq">${xq}</div>
 				<div id="e" onclick="comment('${uid}')">评论</div>
 			`
@@ -314,6 +315,9 @@
 			$.ajax({
 				type:'post',
 				url:href+'/users/shujia',
+				data:{
+					uid:uid
+				},
 				success(data){
 					console.log(data)
 					var str=''

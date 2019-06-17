@@ -128,6 +128,7 @@
 			var username=loginuid.name;
 			var userimg=loginuid.img;
 			var useruid=loginuid.uid;
+			var uid=loginuid.uid;
 			title.innerHTML=`
 				<img src="${loginuid.img}">
 			`
@@ -218,7 +219,7 @@
 						<span id="d">${title}</span>
 						<div id="e" onclick="aal('${a}')">评论</div>
 						<div id="e_xq">${xq}</div>
-						<div id="jia" onclick="Join('${a}','${img}','${title}','${xq}','${name}')">加入书架</div>
+						<div id="jia" onclick="Join('${a}','${img}','${title}','${xq}','${name}','${uid}')">加入书架</div>
 					`
 					d.innerHTML=`${title}`
 					str=''
@@ -233,8 +234,9 @@
 
 		}
 		//加入书架
-		function Join(a,b,c,xq,name){
+		function Join(a,b,c,xq,name,useruida){
 			console.log(a,b,c)
+			console.log(useruida)
 			$.ajax({
 				type:'post',
 				url:href+'/users/shu',
@@ -243,7 +245,8 @@
 					img:b,
 					name:c,
 					xq:xq,
-					aname:name
+					aname:name,
+					useruid:useruida
 				},
 				success(data){
 					console.log(data)

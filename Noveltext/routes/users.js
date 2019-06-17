@@ -11,6 +11,7 @@ router.use(multer({
 	dest:'./public/file'
 }).any())
 router.post('/img',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
  	var f=req.files[0];
  	console.log(f)
  	var name=f.filename;
@@ -20,6 +21,7 @@ router.post('/img',function(req,res){
 })
 //注册
 router.post('/zc',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	sql.con({
 		arr:[json.user],
@@ -44,6 +46,7 @@ router.post('/zc',function(req,res){
 })
 //登录
 router.post('/in',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	sql.con({
 		arr:[json.user,json.pass],
@@ -65,6 +68,7 @@ router.post('/in',function(req,res){
 //小说封面
 //xsimg
 router.post('/xsimg',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
  	var f=req.files[0];
  	console.log(f)
  	var name=f.filename;
@@ -74,6 +78,7 @@ router.post('/xsimg',function(req,res){
 })
 //发布小说
 router.post('/set_text',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	console.log(json)
 	sql.con({
@@ -91,6 +96,7 @@ router.post('/set_text',function(req,res){
 //小说章节
 //set_list
 router.post('/set_list',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	console.log(json)
 	sql.con({
@@ -108,6 +114,7 @@ router.post('/set_list',function(req,res){
 //搜索
 //ss
 router.post('/ss',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	console.log(json.text)
 	sql.con({
@@ -124,6 +131,7 @@ router.post('/ss',function(req,res){
 })	
 //热推
 router.post('/rt',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	sql.con({
 		arr:[],
 		sql:'select * from xs',
@@ -138,6 +146,7 @@ router.post('/rt',function(req,res){
 })
 //点击小说查看详情	
 router.post('/xq',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	sql.con({
 		arr:[json.uid],
@@ -169,6 +178,7 @@ router.post('/xq',function(req,res){
 //小锁内容
 //concent
 router.post('/concent',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	sql.con({
 		arr:[json.uid],
@@ -185,6 +195,7 @@ router.post('/concent',function(req,res){
 //发表评论
 //comment
 router.post('/comment',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	sql.con({
 		arr:[json.username,json.userimg,json.content,json.xsuid,json.useruid],
@@ -201,6 +212,7 @@ router.post('/comment',function(req,res){
 //展示当前小说评论
 //comment_list
 router.post('/comment_list',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	sql.con({
 		arr:[json.uid],
@@ -217,6 +229,7 @@ router.post('/comment_list',function(req,res){
 //个人中心我的小说
 //my_comment
 router.post('/my_comment',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	sql.con({
 		arr:[json.uid],
@@ -232,6 +245,7 @@ router.post('/my_comment',function(req,res){
 })
 //小说UID加入书架
 router.post('/shu',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	sql.con({
 		arr:[json.name],
@@ -241,8 +255,8 @@ router.post('/shu',function(req,res){
 				res.send('no')
 			}else{
 				sql.con({
-					arr:[json.img,json.name,json.songuid,json.xq,json.aname],
-					sql:'insert into shu(img,name,songuid,xq,zn) values(?,?,?,?,?)',
+					arr:[json.img,json.name,json.songuid,json.xq,json.aname,json.useruid],
+					sql:'insert into shu(img,name,songuid,xq,zn,useruid) values(?,?,?,?,?,?)',
 					success(data){
 						res.send('ok')
 					},
@@ -256,21 +270,35 @@ router.post('/shu',function(req,res){
 })
 //我的书架
 router.post('/shujia',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
+	var json=req.body;
 	sql.con({
-		arr:[],
-		sql:'select * from shu',
+		arr:[json.uid],
+		sql:'select * from shu where useruid=?',
 		success(data){
-			res.send(data)
-		},
-		error(err){
-			res.send(err)
+			res.send(data)	
 		}
-		
 	})
 })
+//if(data.length){
+// 	res.send('no')
+// }else{
+// 	sql.con({
+// 		arr:[],
+// 		sql:'select * from shu',
+// 		success(data){
+// 			res.send(data)
+// 		},
+// 		error(err){
+// 			res.send(err)
+// 		}
+		
+// 	})
+// }
 //我的书架删除
 //delect
 router.post('/delect',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	sql.con({
 		arr:[json.uid],
@@ -286,6 +314,7 @@ router.post('/delect',function(req,res){
 })
 //我的发表查看和阅读
 router.post('/read',function(req,res){
+	res.setHeader('Access-Control-Allow-Origin','*')
 	var json=req.body;
 	sql.con({
 		arr:[json.uid],

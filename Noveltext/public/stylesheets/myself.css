@@ -393,3 +393,17 @@
 	line-height:30px;
 	padding: 10px;
 }
+#Continued{
+	width: 110px;
+    height: 38px;
+    background-color: ;
+    text-align: center;
+    line-height: 38px;
+    font-size: 14px;
+    background-color: #ccc;
+    cursor: pointer;
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    right:20px;
+}
